@@ -12,3 +12,10 @@ export enum SelectedPage {
     description: string,
     icon: JSX.Element
   }
+
+
+  export interface ClassType { 
+      name: string,
+      description?: string,
+      image: string
+  }
