@@ -1,11 +1,36 @@
+import { useState, useEffect } from "react";
+import Navbar from "@/scenes/navbar";
+
+import { SelectedPage } from "@/shared/types";
 
 function App() {
-  return <div className="app">
-    <p className="text-gray-500">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos quasi autem accusamus sapiente expedita maiores, minus laboriosam id ratione, aspernatur deleniti repudiandae. Voluptas atque reiciendis quasi architecto non et eaque!
-    </p>
+  const [selectedPage, setSelectedPage] = useState<SelectedPage>(
+    SelectedPage.Home
+  );
+  const [isTopOfPage, setIsTopOfPafe] = useState<boolean>(true);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY === 0) {
+        setIsTopOfPafe(true);
+        setSelectedPage(SelectedPage.Home);
+      }
+      if (window.scrollY !== 0) {
+        setIsTopOfPafe(false);
+      }
+    };
 
-  </div>;
+    window.addEventListener("scroll", handleScroll);
+    return () => removeEventListener("scroll", handleScroll);
+  }, []);
+  return (
+    <div className="app bg-gray-20">
+      <Navbar
+        selectedPage={selectedPage}
+        setSelectedPage={setSelectedPage}
+        isTopOfPage={isTopOfPage}
+      />
+    </div>
+  );
 }
 
 export default App;
