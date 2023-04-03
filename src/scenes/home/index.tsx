@@ -17,7 +17,6 @@ type Props = {
 
 const Home = ({ setSelectedPage }: Props) => {
   const isAboveMediaScreens = useMediaQuery("(min-width: 1060px)");
-  console.log(isAboveMediaScreens);
   return (
     <section id="home" className="gap-16 bg-gray-20 py-10 md:h-full md:pb-0">
       {/* Image and main header */}
